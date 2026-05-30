@@ -1,7 +1,7 @@
-package com.eventledger.api.service;
+package com.eventledger.service;
 
-import com.eventledger.api.entity.Event;
-import com.eventledger.api.repository.EventRepository;
+import com.eventledger.entity.Event;
+import com.eventledger.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

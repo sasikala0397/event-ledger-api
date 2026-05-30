@@ -1,4 +1,4 @@
-package com.eventledger.api.entity;
+package com.eventledger.entity;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -22,7 +22,7 @@ public class Event {
     @Pattern(regexp = "CREDIT|DEBIT")
     private String type;
 
-    @DecimalMin(value = "0.01")
+   @DecimalMin(value = "0", inclusive = false)
     private BigDecimal amount;
 
     @NotBlank

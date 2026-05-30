@@ -1,6 +1,6 @@
-package com.eventledger.api.repository;
+package com.eventledger.repository;
 
-import com.eventledger.api.entity.Event;
+import com.eventledger.entity.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
