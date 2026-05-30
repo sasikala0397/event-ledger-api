@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EventController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">event-ledger-api</a> &gt; <a href="index.source.html" class="el_package">com.eventledger.controller</a> &gt; <span class="el_source">EventController.java</span></div><h1>EventController.java</h1><pre class="source lang-java linenums">package com.eventledger.controller;
+
+import com.eventledger.entity.Event;
+import com.eventledger.service.EventService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import jakarta.validation.Valid;
+import java.math.BigDecimal;
+import java.util.List;
+
+@RestController
+ 
+public class EventController {
+    private final EventService service;
+
+<span class="fc" id="L18">    public EventController(EventService service) {</span>
+<span class="fc" id="L19">        this.service = service;</span>
+<span class="fc" id="L20">    }</span>
+
+    @PostMapping(&quot;/events&quot;)
+    public ResponseEntity&lt;Event&gt; createEvent(@Valid @RequestBody Event event) {
+<span class="fc" id="L24">        Event saved = service.saveEvent(event);</span>
+<span class="fc" id="L25">        return ResponseEntity.status(HttpStatus.CREATED).body(saved);</span>
+    }
+
+    @GetMapping(&quot;/events/{id}&quot;)
+    public Event getEvent(@PathVariable String id) {
+<span class="fc" id="L30">        return service.getEvent(id);</span>
+    }
+
+    @GetMapping(&quot;/events&quot;)
+    public List&lt;Event&gt; getEvents(@RequestParam String accountId) {
+<span class="fc" id="L35">        return service.getEventsByAccount(accountId);</span>
+    }
+
+    @GetMapping(&quot;/accounts/{accountId}/balance&quot;)
+    public BigDecimal getBalance(@PathVariable String accountId) {
+<span class="fc" id="L40">        return service.getBalance(accountId);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

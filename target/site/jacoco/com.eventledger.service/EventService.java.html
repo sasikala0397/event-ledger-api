@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EventService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">event-ledger-api</a> &gt; <a href="index.source.html" class="el_package">com.eventledger.service</a> &gt; <span class="el_source">EventService.java</span></div><h1>EventService.java</h1><pre class="source lang-java linenums">package com.eventledger.service;
+
+import com.eventledger.entity.Event;
+import com.eventledger.repository.EventRepository;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+@Service
+public class EventService {
+    private final EventRepository repository;
+
+<span class="fc" id="L14">    public EventService(EventRepository repository) {</span>
+<span class="fc" id="L15">        this.repository = repository;</span>
+<span class="fc" id="L16">    }</span>
+
+    public Event saveEvent(Event event) {
+<span class="fc" id="L19">        return repository.findById(event.getEventId())</span>
+<span class="fc" id="L20">                .orElseGet(() -&gt; repository.save(event));</span>
+    }
+
+    public Event getEvent(String id) {
+<span class="fc" id="L24">        return repository.findById(id).orElseThrow();</span>
+    }
+
+    public List&lt;Event&gt; getEventsByAccount(String accountId) {
+<span class="fc" id="L28">        return repository.findByAccountIdOrderByEventTimestampAsc(accountId);</span>
+    }
+
+public BigDecimal getBalance(String accountId) {
+<span class="fc" id="L32">    return getEventsByAccount(accountId).stream()</span>
+<span class="fc" id="L33">            .map(e -&gt; {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">                if (&quot;CREDIT&quot;.equals(e.getType())) {</span>
+<span class="fc" id="L35">                    return e.getAmount(); // add credits</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">                } else if (&quot;DEBIT&quot;.equals(e.getType())) {</span>
+<span class="fc" id="L37">                    return e.getAmount().negate(); // subtract debits</span>
+                } else {
+<span class="nc" id="L39">                    return BigDecimal.ZERO;</span>
+                }
+            })
+<span class="fc" id="L42">            .reduce(BigDecimal.ZERO, BigDecimal::add);</span>
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
