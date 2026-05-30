@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.eventledger.controllerTest.EventControllerTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.205 s -- in com.eventledger.controllerTest.EventControllerTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.927 s -- in com.eventledger.controllerTest.EventControllerTest

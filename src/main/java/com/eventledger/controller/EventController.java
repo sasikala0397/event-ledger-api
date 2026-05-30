@@ -21,6 +21,9 @@ public class EventController {
 
     @PostMapping("/events")
     public ResponseEntity<Event> createEvent(@Valid @RequestBody Event event) {
+        if (service.eventExists(event.getEventId())) {
+            return ResponseEntity.ok(service.getEvent(event.getEventId()));
+        }
         Event saved = service.saveEvent(event);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }

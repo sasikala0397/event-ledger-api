@@ -2,5 +2,7 @@ com/eventledger/entity/Metadata.class
 com/eventledger/EventLedgerApiApplication.class
 com/eventledger/entity/Event.class
 com/eventledger/repository/EventRepository.class
+com/eventledger/exception/GlobalExceptionHandler.class
 com/eventledger/service/EventService.class
 com/eventledger/controller/EventController.class
+com/eventledger/exception/EventNotFoundException.class

@@ -1,2 +1,4 @@
+/workspaces/event-ledger-api/src/test/java/com/eventledger/exceptionTest/EventExceptionTest.java
 /workspaces/event-ledger-api/src/test/java/com/eventledger/controllerTest/EventControllerTest.java
+/workspaces/event-ledger-api/src/test/java/com/eventledger/exceptionTest/GlobalExceptionHandlerTest.java
 /workspaces/event-ledger-api/src/test/java/com/eventledger/serviceTest/EventServiceTest.java

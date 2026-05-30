@@ -1,6 +1,7 @@
 package com.eventledger.service;
 
 import com.eventledger.entity.Event;
+import com.eventledger.exception.EventNotFoundException;
 import com.eventledger.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
@@ -20,15 +21,20 @@ public class EventService {
                 .orElseGet(() -> repository.save(event));
     }
 
+    public boolean eventExists(String eventId) {
+        return repository.existsById(eventId);
+    }
+
     public Event getEvent(String id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id)
+                .orElseThrow(() -> new EventNotFoundException("Event not found: " + id));
     }
 
     public List<Event> getEventsByAccount(String accountId) {
         return repository.findByAccountIdOrderByEventTimestampAsc(accountId);
     }
 
-public BigDecimal getBalance(String accountId) {
+    public BigDecimal getBalance(String accountId) {
     return getEventsByAccount(accountId).stream()
             .map(e -> {
                 if ("CREDIT".equals(e.getType())) {

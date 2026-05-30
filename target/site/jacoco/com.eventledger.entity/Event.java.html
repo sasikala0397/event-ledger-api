@@ -14,11 +14,13 @@ import java.time.Instant;
 @Entity
 <span class="fc" id="L15">public class Event {</span>
     @Id
+    @NotBlank
     private String eventId;
 
     @NotBlank
     private String accountId;
 
+    @NotBlank
     @Pattern(regexp = &quot;CREDIT|DEBIT&quot;)
     private String type;
 
@@ -35,25 +37,25 @@ import java.time.Instant;
     private Metadata metadata;
 
      
-<span class="fc" id="L38">    public String getEventId() { return eventId; }</span>
-<span class="fc" id="L39">    public void setEventId(String eventId) { this.eventId = eventId; }</span>
+<span class="fc" id="L40">    public String getEventId() { return eventId; }</span>
+<span class="fc" id="L41">    public void setEventId(String eventId) { this.eventId = eventId; }</span>
 
-<span class="fc" id="L41">    public String getAccountId() { return accountId; }</span>
-<span class="fc" id="L42">    public void setAccountId(String accountId) { this.accountId = accountId; }</span>
+<span class="fc" id="L43">    public String getAccountId() { return accountId; }</span>
+<span class="fc" id="L44">    public void setAccountId(String accountId) { this.accountId = accountId; }</span>
 
-<span class="fc" id="L44">    public String getType() { return type; }</span>
-<span class="fc" id="L45">    public void setType(String type) { this.type = type; }</span>
+<span class="fc" id="L46">    public String getType() { return type; }</span>
+<span class="fc" id="L47">    public void setType(String type) { this.type = type; }</span>
 
-<span class="fc" id="L47">    public BigDecimal getAmount() { return amount; }</span>
-<span class="fc" id="L48">    public void setAmount(BigDecimal amount) { this.amount = amount; }</span>
+<span class="fc" id="L49">    public BigDecimal getAmount() { return amount; }</span>
+<span class="fc" id="L50">    public void setAmount(BigDecimal amount) { this.amount = amount; }</span>
 
-<span class="fc" id="L50">    public String getCurrency() { return currency; }</span>
-<span class="fc" id="L51">    public void setCurrency(String currency) { this.currency = currency; }</span>
+<span class="fc" id="L52">    public String getCurrency() { return currency; }</span>
+<span class="fc" id="L53">    public void setCurrency(String currency) { this.currency = currency; }</span>
 
-<span class="fc" id="L53">    public Instant getEventTimestamp() { return eventTimestamp; }</span>
-<span class="fc" id="L54">    public void setEventTimestamp(Instant eventTimestamp) { this.eventTimestamp = eventTimestamp; }</span>
+<span class="fc" id="L55">    public Instant getEventTimestamp() { return eventTimestamp; }</span>
+<span class="fc" id="L56">    public void setEventTimestamp(Instant eventTimestamp) { this.eventTimestamp = eventTimestamp; }</span>
 
-<span class="fc" id="L56">    public Metadata getMetadata() { return metadata; }</span>
-<span class="nc" id="L57">    public void setMetadata(Metadata metadata) { this.metadata = metadata; }</span>
+<span class="fc" id="L58">    public Metadata getMetadata() { return metadata; }</span>
+<span class="nc" id="L59">    public void setMetadata(Metadata metadata) { this.metadata = metadata; }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,2 +1,4 @@
-com/eventledger/controllerTest/EventControllerTest.class
+com/eventledger/exceptionTest/GlobalExceptionHandlerTest.class
 com/eventledger/serviceTest/EventServiceTest.class
+com/eventledger/exceptionTest/EventExceptionTest.class
+com/eventledger/controllerTest/EventControllerTest.class

@@ -14,11 +14,13 @@ import java.time.Instant;
 @Entity
 public class Event {
     @Id
+    @NotBlank
     private String eventId;
 
     @NotBlank
     private String accountId;
 
+    @NotBlank
     @Pattern(regexp = "CREDIT|DEBIT")
     private String type;
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.eventledger.controllerTest.EventControllerTest" time="0.927" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.eventledger.exceptionTest.GlobalExceptionHandlerTest" time="2.172" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -62,14 +62,39 @@
     <property name="java.class.version" value="69.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[event-ledger-api] "/>
   </properties>
-  <testcase name="testGetMissingEventReturnsNotFound" classname="com.eventledger.controllerTest.EventControllerTest" time="0.025">
-    <system-out><![CDATA[2026-05-30T21:04:59.766Z  INFO 238901 --- [event-ledger-api] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.eventledger.controllerTest.EventControllerTest]: EventControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-05-30T21:04:59.786Z  INFO 238901 --- [event-ledger-api] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.eventledger.EventLedgerApiApplication for test class com.eventledger.controllerTest.EventControllerTest
+  <testcase name="shouldReturnBadRequestForInvalidEventPayload" classname="com.eventledger.exceptionTest.GlobalExceptionHandlerTest" time="0.527">
+    <system-out><![CDATA[2026-05-30T21:04:57.514Z  INFO 238901 --- [event-ledger-api] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.eventledger.exceptionTest.GlobalExceptionHandlerTest]: GlobalExceptionHandlerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-05-30T21:04:57.547Z  INFO 238901 --- [event-ledger-api] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.eventledger.EventLedgerApiApplication for test class com.eventledger.exceptionTest.GlobalExceptionHandlerTest
+2026-05-30T21:04:57.575Z  INFO 238901 --- [event-ledger-api] [           main] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.6)
+
+2026-05-30T21:04:57.706Z  INFO 238901 --- [event-ledger-api] [           main] c.e.e.GlobalExceptionHandlerTest         : Starting GlobalExceptionHandlerTest using Java 25.0.2 with PID 238901 (started by codespace in /workspaces/event-ledger-api)
+2026-05-30T21:04:57.706Z  INFO 238901 --- [event-ledger-api] [           main] c.e.e.GlobalExceptionHandlerTest         : No active profile set, falling back to 1 default profile: "default"
+2026-05-30T21:04:58.322Z  INFO 238901 --- [event-ledger-api] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-30T21:04:58.349Z  INFO 238901 --- [event-ledger-api] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 26 ms. Found 1 JPA repository interface.
+2026-05-30T21:04:58.546Z  INFO 238901 --- [event-ledger-api] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-30T21:04:58.548Z  INFO 238901 --- [event-ledger-api] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-30T21:04:58.552Z  INFO 238901 --- [event-ledger-api] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-30T21:04:58.553Z  INFO 238901 --- [event-ledger-api] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-05-30T21:04:58.554Z  INFO 238901 --- [event-ledger-api] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:testdb user=SA
+2026-05-30T21:04:58.554Z  INFO 238901 --- [event-ledger-api] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-05-30T21:04:58.555Z  WARN 238901 --- [event-ledger-api] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-30T21:04:58.642Z  INFO 238901 --- [event-ledger-api] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-30T21:04:58.647Z  INFO 238901 --- [event-ledger-api] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-30T21:04:58.822Z  WARN 238901 --- [event-ledger-api] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-30T21:04:59.045Z  INFO 238901 --- [event-ledger-api] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2026-05-30T21:04:59.094Z  INFO 238901 --- [event-ledger-api] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-05-30T21:04:59.094Z  INFO 238901 --- [event-ledger-api] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-05-30T21:04:59.096Z  INFO 238901 --- [event-ledger-api] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-05-30T21:04:59.112Z  INFO 238901 --- [event-ledger-api] [           main] c.e.e.GlobalExceptionHandlerTest         : Started GlobalExceptionHandlerTest in 1.537 seconds (process running for 17.165)
 ]]></system-out>
   </testcase>
-  <testcase name="testValidationErrorReturnsBadRequest" classname="com.eventledger.controllerTest.EventControllerTest" time="0.017"/>
-  <testcase name="testGetBalance" classname="com.eventledger.controllerTest.EventControllerTest" time="0.079"/>
-  <testcase name="testDuplicateEventReturnsOk" classname="com.eventledger.controllerTest.EventControllerTest" time="0.587"/>
-  <testcase name="testGetEventsByAccount" classname="com.eventledger.controllerTest.EventControllerTest" time="0.07"/>
-  <testcase name="testCreateEventAndGetById" classname="com.eventledger.controllerTest.EventControllerTest" time="0.089"/>
+  <testcase name="shouldReturnNotFoundForMissingEvent" classname="com.eventledger.exceptionTest.GlobalExceptionHandlerTest" time="0.026"/>
 </testsuite>

@@ -21,23 +21,26 @@ public class EventController {
 
     @PostMapping(&quot;/events&quot;)
     public ResponseEntity&lt;Event&gt; createEvent(@Valid @RequestBody Event event) {
-<span class="fc" id="L24">        Event saved = service.saveEvent(event);</span>
-<span class="fc" id="L25">        return ResponseEntity.status(HttpStatus.CREATED).body(saved);</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if (service.eventExists(event.getEventId())) {</span>
+<span class="fc" id="L25">            return ResponseEntity.ok(service.getEvent(event.getEventId()));</span>
+        }
+<span class="fc" id="L27">        Event saved = service.saveEvent(event);</span>
+<span class="fc" id="L28">        return ResponseEntity.status(HttpStatus.CREATED).body(saved);</span>
     }
 
     @GetMapping(&quot;/events/{id}&quot;)
     public Event getEvent(@PathVariable String id) {
-<span class="fc" id="L30">        return service.getEvent(id);</span>
+<span class="fc" id="L33">        return service.getEvent(id);</span>
     }
 
     @GetMapping(&quot;/events&quot;)
     public List&lt;Event&gt; getEvents(@RequestParam String accountId) {
-<span class="fc" id="L35">        return service.getEventsByAccount(accountId);</span>
+<span class="fc" id="L38">        return service.getEventsByAccount(accountId);</span>
     }
 
     @GetMapping(&quot;/accounts/{accountId}/balance&quot;)
     public BigDecimal getBalance(@PathVariable String accountId) {
-<span class="fc" id="L40">        return service.getBalance(accountId);</span>
+<span class="fc" id="L43">        return service.getBalance(accountId);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

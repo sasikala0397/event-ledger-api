@@ -1,6 +1,7 @@
 package com.eventledger.controllerTest;
 
 import com.eventledger.entity.Event;
+import com.eventledger.repository.EventRepository;
 import com.eventledger.service.EventService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,9 +30,12 @@ class EventControllerTest {
     @Autowired
     private EventService service;
 
+    @Autowired
+    private EventRepository repository;
+
     @BeforeEach
     void cleanUp() {
-        service.getEventsByAccount("acct-123").forEach(e -> service.saveEvent(e)); // optional cleanup
+        repository.deleteAll();
     }
 
     @Test
@@ -107,5 +111,55 @@ class EventControllerTest {
         mockMvc.perform(get("/accounts/acct-123/balance"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("100.00"));
+    }
+
+    @Test
+    void testDuplicateEventReturnsOk() throws Exception {
+        String json = """
+            {
+              "eventId":"evt-001",
+              "accountId":"acct-123",
+              "type":"CREDIT",
+              "amount":150.00,
+              "currency":"USD",
+              "eventTimestamp":"2026-05-15T14:02:11Z"
+            }
+            """;
+
+        mockMvc.perform(post("/events")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(post("/events")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.eventId").value("evt-001"));
+    }
+
+    @Test
+    void testGetMissingEventReturnsNotFound() throws Exception {
+        mockMvc.perform(get("/events/unknown"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void testValidationErrorReturnsBadRequest() throws Exception {
+        String invalidJson = """
+            {
+              "eventId":"evt-001",
+              "accountId":"acct-123",
+              "type":"INVALID",
+              "amount":0,
+              "currency":"USD",
+              "eventTimestamp":"2026-05-15T14:02:11Z"
+            }
+            """;
+
+        mockMvc.perform(post("/events")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(invalidJson))
+                .andExpect(status().isBadRequest());
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.eventledger.controllerTest.EventControllerTest" time="0.927" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.eventledger.exceptionTest.EventExceptionTest" time="0.079" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -62,14 +62,11 @@
     <property name="java.class.version" value="69.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[event-ledger-api] "/>
   </properties>
-  <testcase name="testGetMissingEventReturnsNotFound" classname="com.eventledger.controllerTest.EventControllerTest" time="0.025">
-    <system-out><![CDATA[2026-05-30T21:04:59.766Z  INFO 238901 --- [event-ledger-api] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.eventledger.controllerTest.EventControllerTest]: EventControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-05-30T21:04:59.786Z  INFO 238901 --- [event-ledger-api] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.eventledger.EventLedgerApiApplication for test class com.eventledger.controllerTest.EventControllerTest
+  <testcase name="testValidationErrorHandledByGlobalExceptionHandler" classname="com.eventledger.exceptionTest.EventExceptionTest" time="0.019">
+    <system-out><![CDATA[2026-05-30T21:04:59.684Z  INFO 238901 --- [event-ledger-api] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.eventledger.exceptionTest.EventExceptionTest]: EventExceptionTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-05-30T21:04:59.695Z  INFO 238901 --- [event-ledger-api] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.eventledger.EventLedgerApiApplication for test class com.eventledger.exceptionTest.EventExceptionTest
 ]]></system-out>
   </testcase>
-  <testcase name="testValidationErrorReturnsBadRequest" classname="com.eventledger.controllerTest.EventControllerTest" time="0.017"/>
-  <testcase name="testGetBalance" classname="com.eventledger.controllerTest.EventControllerTest" time="0.079"/>
-  <testcase name="testDuplicateEventReturnsOk" classname="com.eventledger.controllerTest.EventControllerTest" time="0.587"/>
-  <testcase name="testGetEventsByAccount" classname="com.eventledger.controllerTest.EventControllerTest" time="0.07"/>
-  <testcase name="testCreateEventAndGetById" classname="com.eventledger.controllerTest.EventControllerTest" time="0.089"/>
+  <testcase name="testEventNotFoundExceptionReturnsNotFound" classname="com.eventledger.exceptionTest.EventExceptionTest" time="0.013"/>
+  <testcase name="testMalformedJsonHandledByGlobalExceptionHandler" classname="com.eventledger.exceptionTest.EventExceptionTest" time="0.012"/>
 </testsuite>
